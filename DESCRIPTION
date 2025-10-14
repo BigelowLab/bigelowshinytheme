@@ -1,0 +1,17 @@
+Package: bigelowshinytheme
+Type: Package
+Title: Bigelow-Style Shiny Application Themes
+Version: 0.0.0
+Authors@R: c(
+    person("Johnson", "Omi", email = "ojohnson@bigelow.org", role = c("aut", "cre")))
+Maintainer: Omi Johnson <ojohnson@bigelow.org>
+Description: Package encompassing a theme object and supporting structure function for Shiny apps matching official Bigelow Laboratory styling. 
+URL: https://github.com/BigelowLab/bigelowshinytheme
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 4.2.0)
+Imports:
+  bslib,
+  htmltools
+RoxygenNote: 7.3.2

@@ -36,6 +36,25 @@ bigelow_theme <- function() {
     bslib::bs_add_rules(bigelow_css)
 }
 
+#' Applies bigelow-style theme colors to ggplot2, base, and lattice graphics within an R Shiny application. Wraps thematic::thematic_shiny().
+#' @export
+#' @param accent a color for making certain graphical markers 'stand out', i.e. fitted line color in ggplot2::geom_smooth(). Default color is Bigelow sky blue, replace if high contrast required.
+#' @param sequential a color palette for graphical markers encoding numeric values. Can be a vector of color codes or a sequential_gradient() object. Defaults to viridis::viridis() color scheme, which is colorblind safe.
+#' @param qualitative a color palette for graphical markers that encode qualitative values. Defaults to thematic::okabe_ito(), which is verified to be colorblind safe.
+style_plots_bigelow <- function(
+    accent = "#02A5DD",
+    sequential = viridis::viridis(4), 
+    qualitative = thematic::okabe_ito()) {
+  
+  thematic::thematic_shiny(bg = "white", 
+                           fg = "#444", 
+                           accent = accent, 
+                           font = thematic::font_spec(families = c("Open Sans", "Roboto"), scale = 1.2), 
+                           sequential = sequential, 
+                           qualitative = qualitative, 
+                           inherit = FALSE)
+}
+
 #' Creates and returns a Bigelow-style header for an R Shiny application.
 #' @export 
 #' @param left_hand, div, material to have on left hand side of footer.
@@ -87,7 +106,5 @@ bigelow_card <- function(..., headerContent = NULL, footerContent = NULL) {
   
   do.call(div, arg_list)
 }
-
-
 
 

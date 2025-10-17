@@ -1,0 +1,15 @@
+/* Without this block the zoom indicators on leaflet render above the dropdown. */
+.selectize-dropdown {
+  z-index: 5000; /* Force element to render on top of anything else */
+}
+
+
+/* This block ensures that the code examples within the UI Input are flush to the bottom */
+.tab-pane .row {
+  position: relative; /* position is specified */
+}
+
+.tab-content code {
+  position: absolute; /* position is based on to nearest parent with defined position */
+  bottom: 0; /* bottom of code block is flush with parent */
+}

@@ -24,7 +24,7 @@ ui <- shiny::fluidPage(
   bigelowshinytheme::bigelow_main_body(
     # Introduction
     p("The Bigelow Shiny theme is a package that provides pre-built theming for shiny components as well as a handful of custom functions for structuring your Shiny application. This demo app highlights key functionality and supported features."),
-    p("To add Bigelow Theming to your Shiny application, add ", code("theme = bigelowShiny::bigelow_theme()"), "as the first argument to your ui object. To mirror styling to plot objects, call ", code("style_plots_bigelow()"), " immediately before your call to ", code("shiny::runApp()"), "."),
+    p("To add Bigelow Theming to your Shiny application, add ", code("theme = bigelow_theme()"), "as the first argument to your ui object. To mirror styling to plot objects, call ", code("bigelow_style_plots()"), " immediately before your call to ", code("shiny::shinyApp()"), "."),
     
     p(style = "color: var(--danger); font-weight: bold;", "NOTE: The Bigelow Shiny theme REMOVES default padding on the main body element so that navbars, headers, and footers extend across the page. Use bigelow_main_body() or custom styling to add padding for main content."),
     
@@ -174,8 +174,8 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {}
 
-style_plots_bigelow()
-shiny::runApp(ui, server)')
+bigelow_style_plots()
+shiny::shinyApp(ui, server)')
 
 output$bigelow_card_codeblock <- renderText(
   'bigelow_card(headerContent = "Header Text",

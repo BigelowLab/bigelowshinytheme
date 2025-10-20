@@ -82,17 +82,17 @@ As CSS styles stack on top of each other, you have access to all variables defin
 
 :root {
   --bg: white;
-  --bg-accent: #EAF2F6;
-  --fg: #444;
-  --fg-light: #CCC;
-  --primary: #02A5DD;
-  --secondary: #1E4E7B;
-  --tertiary: #81AB1F;
-  --danger: #D83838;
-  --danger-accent: #901515;
+  --bg-accent: #EAF2F6; [light blue]
+  --fg: #444; [dark grey]
+  --fg-light: #CCC; [light grey]
+  --primary: #02A5DD; [bigelow sky blue]
+  --secondary: #1E4E7B; [bigelow dark blue]
+  --tertiary: #81AB1F; [bigelow green]
+  --danger: #D83838; [red]
+  --danger-accent: #901515; [dark red]
   --font-size: 17px;
   --line-height: 28px;
-  --nav-weight: 600;
+  --nav-weight: 600; [font-weight for navigation tabs]
   --border-thickness: 2px;
 }
 

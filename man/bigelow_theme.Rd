@@ -7,8 +7,17 @@
 bigelow_theme()
 }
 \value{
-a Shiny application bslib theme object with Bigelow-style theming.
+a Shiny application \strong{bslib} theme object with Bigelow-style theming.
 }
 \description{
 Creates and returns a Bigelow-style theme object for R Shiny.
+}
+\examples{
+\dontrun{
+ui <- fluidPage(
+ theme = bigelow_theme(),
+ p("Hello World!"))
+server <- function(input, output, session) {}
+shinyApp(ui, server)
+}
 }

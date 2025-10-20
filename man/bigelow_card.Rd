@@ -18,3 +18,9 @@ bigelow_card(..., headerContent = NULL, footerContent = NULL)
 Creates and returns a Bigelow-style plot card with optional header, main content, 
 and optional footer
 }
+\examples{
+\dontrun{
+bigelow_card(headerContent = "Plot title", 
+ plotOutput("plot_id"))
+}
+}

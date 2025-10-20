@@ -2,7 +2,7 @@
 % Please edit documentation in R/copy_www.R
 \name{copy_www}
 \alias{copy_www}
-\title{Copies www folder with supporting images to specified directory}
+\title{Copies www folder with supporting images and instruction CSS file to specified directory}
 \usage{
 copy_www(dest = getwd())
 }
@@ -13,5 +13,12 @@ copy_www(dest = getwd())
 results from file.copy
 }
 \description{
-Copies www folder with supporting images to specified directory
+Copies www folder with supporting images and instruction CSS file to specified directory
+}
+\examples{
+\dontrun{
+if (!dir.exists("www")) {
+ copy_www()
+}
+}
 }

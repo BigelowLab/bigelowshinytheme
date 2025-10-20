@@ -1,6 +1,14 @@
 #' Creates and returns a Bigelow-style theme object for R Shiny.
 #' @export
-#' @return a Shiny application bslib theme object with Bigelow-style theming.
+#' @return a Shiny application \strong{bslib} theme object with Bigelow-style theming.
+#' @examples
+#' \dontrun{
+#' ui <- fluidPage(
+#'  theme = bigelow_theme(),
+#'  p("Hello World!"))
+#' server <- function(input, output, session) {}
+#' shinyApp(ui, server)
+#' }
 bigelow_theme <- function() {
   
   # Basic theme object built using bslib. 
@@ -36,12 +44,18 @@ bigelow_theme <- function() {
     bslib::bs_add_rules(bigelow_css)
 }
 
-#' Applies bigelow-style theme colors to ggplot2, base, and lattice graphics within an R Shiny application. Wraps thematic::thematic_shiny().
+#' Applies bigelow-style theme colors to \strong{ggplot2}, \strong{base}, and \strong{lattice} graphics within an R Shiny application. Wraps \code{\link[thematic]{thematic_shiny}}.
 #' @export
-#' @param accent a color for making certain graphical markers 'stand out', i.e. fitted line color in ggplot2::geom_smooth(). Default color is Bigelow sky blue, replace if high contrast required.
-#' @param sequential a color palette for graphical markers encoding numeric values. Can be a vector of color codes or a sequential_gradient() object. Defaults to viridis::viridis() color scheme, which is colorblind safe.
-#' @param qualitative a color palette for graphical markers that encode qualitative values. Defaults to thematic::okabe_ito(), which is verified to be colorblind safe.
-style_plots_bigelow <- function(
+#' @param accent a color for making certain graphical markers 'stand out', i.e. fitted line color in \code{\link[ggplot2]{geom_smooth}}. Default color is Bigelow sky blue, replace if high contrast required.
+#' @param sequential a color palette for graphical markers encoding numeric values. Can be a vector of color codes or a \code{\link[thematic]{sequential_gradient}} object. Defaults to \code{\link[viridis]{viridis}} color scheme, which is colorblind safe.
+#' @param qualitative a color palette for graphical markers that encode qualitative values. Defaults to \code{\link[thematic]{okabe_ito}}, which is verified to be colorblind safe.
+#' @return global theme object.
+#' @examples
+#' \dontrun{
+#' bigelow_style_plots()
+#' shinyApp(ui, server)
+#' }
+bigelow_style_plots <- function(
     accent = "#02A5DD",
     sequential = viridis::viridis(4), 
     qualitative = thematic::okabe_ito()) {
@@ -61,6 +75,18 @@ style_plots_bigelow <- function(
 #'  If this is pure text it is parsed to a header element
 #' @param right_hand, div, material to have on right hand side of footer or NULL
 #' @return div, footer element with bigelow logo.
+#' @examples
+#' \dontrun{
+#' ui <- shiny::fluidPage(
+#'  theme = bigelow_theme(), 
+#'  bigelow_header("Header text"), 
+#'  bigelow_main_body(
+#'    p("Hello World!")
+#'  ), 
+#'  bigelow_footer("Footer text"))
+#' server <- function(input, output, session) {}
+#' shiny::shinyApp(ui, server)
+#' }
 bigelow_header <- function(left_hand, right_hand = NULL) {
   if (inherits(left_hand, "character")) {left_hand <- htmltools::h2(left_hand)}
   if (is.null(right_hand)) {
@@ -97,6 +123,11 @@ bigelow_footer <- function(left_hand) {
 #' @param headerContent content, text to put in header
 #' @param footerContent content, text to put in footer
 #' @param ... content to put in main body, typically a plot
+#' @examples
+#' \dontrun{
+#' bigelow_card(headerContent = "Plot title", 
+#'  plotOutput("plot_id"))
+#' }
 bigelow_card <- function(..., headerContent = NULL, footerContent = NULL) {
   header_div <- if (is.null(headerContent)) {NULL} else {div(class = "card-header", headerContent)}
   footer_div <- if (is.null(footerContent)) {NULL} else {div(class = "card-footer", footerContent)}

@@ -36,3 +36,16 @@ Basically just gives the main content a slight padding & restricts max width.
 Creates and returns a Bigelow-style footer for an R Shiny application.
 Required to have bigelow_logo.svg in the www/images folder
 }
+\examples{
+\dontrun{
+ui <- shiny::fluidPage(
+ theme = bigelow_theme(), 
+ bigelow_header("Header text"), 
+ bigelow_main_body(
+   p("Hello World!")
+ ), 
+ bigelow_footer("Footer text"))
+server <- function(input, output, session) {}
+shiny::shinyApp(ui, server)
+}
+}

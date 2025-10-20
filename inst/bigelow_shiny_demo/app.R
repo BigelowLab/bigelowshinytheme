@@ -1,17 +1,27 @@
+suppressPackageStartupMessages({
+  library(shiny)
+  library(bslib)
+  library(bigelowshinytheme)
+  library(dplyr)
+  library(leaflet)
+  library(ggplot2)
+})
+
 # Creates an example Shiny website highlighting supported features of the Bigelow Shiny theme object
-s <- storms |>
+
+s <- dplyr::storms |>
   mutate(date = as.POSIXct(sprintf("%s-%s-%s %s:00", year, month, day, hour))) 
 
-ui <- fluidPage(
-  theme = bigelow_theme(),
+ui <- shiny::fluidPage(
+  theme = bigelowshinytheme::bigelow_theme(),
   includeCSS("www/additionalStyles.css"),
   
   # Header
-  bigelow_header(h2("Bigelow Shiny Theme"),
-                 h6("Tutorial")),
+  bigelowshinytheme::bigelow_header(
+    h2("Bigelow Shiny Theme"), h6("Tutorial")),
   
   # Main content
-  bigelow_main_body(
+  bigelowshinytheme::bigelow_main_body(
     # Introduction
     p("The Bigelow Shiny theme is a package that provides pre-built theming for shiny components as well as a handful of custom functions for structuring your Shiny application. This demo app highlights key functionality and supported features."),
     p("To add Bigelow Theming to your Shiny application, add ", code("theme = bigelowShiny::bigelow_theme()"), "as the first argument to your ui object. To mirror styling to plot objects, call ", code("style_plots_bigelow()"), " immediately before your call to ", code("shiny::runApp()"), "."),
@@ -57,13 +67,13 @@ ui <- fluidPage(
                             selected="Hugo"),
                 div(style = "height: 70vh; overflow-x: auto; display: flex;",
                     div(style = "width: 68vh; flex-shrink: 0; margin: 1vh;", 
-                        bigelow_card(headerContent = "(Header) Storm Record",
+                        bigelowshinytheme::bigelow_card(headerContent = "(Header) Storm Record",
                                      leafletOutput("storm_record", width = "100%", height = "100%"))),
                     div(style = "width: 68vh; flex-shrink: 0; margin: 1vh;", 
-                        bigelow_card(footerContent = "Footer", headerContent = "Wind vs. Force", 
+                        bigelowshinytheme::bigelow_card(footerContent = "Footer", headerContent = "Wind vs. Force", 
                                      plotOutput("scatter_plot"))),
                     div(style = "width: 68vh; flex-shrink: 0; margin: 1vh;", 
-                        bigelow_card(footerContent = "(Footer) Wind over time", headerContent = NULL, 
+                        bigelowshinytheme::bigelow_card(footerContent = "(Footer) Wind over time", headerContent = NULL, 
                                      plotOutput("wind_plot")))
                 )),
       # Showcase of UI Inputs and accompanying code snippets
@@ -142,7 +152,7 @@ ui <- fluidPage(
     )
   ),
   # Footer with bigelow logo
-  bigelow_footer("Last updated October 2025")
+  bigelowshinytheme::bigelow_footer("Last updated October 2025")
 )
 
 server <- function(input, output, session) {
@@ -209,5 +219,5 @@ output$scatter_plot <- renderPlot({
 }
 
 # Applying ggplot styling and render app
-style_plots_bigelow()
+bigelowshinytheme::bigelow_style_plots()
 shinyApp(ui, server)

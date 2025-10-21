@@ -33,22 +33,27 @@ Finally, the `bigelow_card()` function can be used to create a bounding box for 
 
 ```
 library(bigelowshinytheme)
-  
+library(shiny)
+
 if (!dir.exists("www")) {copy_www()}
-  
+
 ui <- fluidPage(
   theme = bigelow_theme(), 
   bigelow_header("Header"),
   bigelow_main_body(
     p("Hello World!"),
-    bigelow_card(headerContent = "Header Text",
-                 footerContent = NULL,
-                 plotOutput("plotBodyContent"))
+    bigelow_card(headerContent = "Header for Card", 
+                 footerContent = NULL, 
+                 plotOutput("plotOutput"))
   ), 
   bigelow_footer("Footer")
 )
 
-server <- function(input, output, session) {}
+server <- function(input, output, session) {
+  output$plotOutput <- renderPlot({
+    plot(iris$Sepal.Length, iris$Sepal.Width, col= iris$Petal.Length)
+  })
+}
 
 bigelow_style_plots()
 shiny::shinyApp(ui, server)
